@@ -1,7 +1,8 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 /**
- * main - prints random number and state whether -ve or +ve
+ * main - prints random number
  *
  * Return: Always 0 (Success)
  */
@@ -19,9 +20,10 @@ int main(void)
 	{
 		printf("%d is zero\n", n);
 	}
-	else (n < 0)
+	else
 	{
 		printf("%d is negative\n", n);
 	}
 	return (0);
 }
+
