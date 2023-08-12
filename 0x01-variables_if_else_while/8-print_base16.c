@@ -1,23 +1,23 @@
 #include <stdio.h>
 /**
- * main - prints 0-9 and A-F
+ * main - prints 0-9 and a-f
  *
  * Return: Always 0 (Success)
  */
 int main(void)
 {
 	char n = '0';
-	char I = 'A';
+	char i = 'a';
 
 	while (n <= '9')
 	{
 		putchar(n);
 		n++;
 	}
-	while (I <= 'F')
+	while (i <= 'f')
 	{
-		putchar(I);
-		I++;
+		putchar(i);
+		i++;
 	}
 	putchar('\n');
 	return (0);
