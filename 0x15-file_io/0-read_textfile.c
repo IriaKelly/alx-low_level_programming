@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "main.h"
 
 /**
@@ -9,25 +8,29 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	FILE *file = fopen(filename, "r");
+	int file_descriptor;
+	ssize_t bytes_read, bytes_written;
+	char buffer[1024];
 
-	if (file == NULL)
+	if (filename == NULL)
+		return (0);
+
+	file_descriptor = open(filename, O_RDONLY);
+	if (file_descriptor == -1)
+		return (0);
+
+	bytes_read = read(file_descriptor, buffer, sizeof(buffer));
+
+	if (bytes_read == -1)
 	{
-		printf("Oops! Something went wrong while opening the file.\n");
+		close(file_descriptor);
 		return (0);
 	}
 
-	char buffer[letters];
-	ssize_t read_letters = fread(buffer, 1, letters, file);
+	close(file_descriptor);
 
-	buffer[read_letters] = '\0';
-
-	for (ssize_t i = 0; i < read_letters; i++)
-	{
-		_putchar(buffer[i]);
-	}
-
-	fclose(file);
-
-	return (read_letters);
+	bytes_written = write(STDOUT_FILENO, buffer, bytes_read);
+	if (bytes_written != bytes_read)
+		return (0);
+	return (bytes_written);
 }
